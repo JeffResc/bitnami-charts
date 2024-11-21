@@ -716,6 +716,7 @@ Return the definition of the git clone init container
 Init container definition for waiting for the database to be ready
 */}}
 {{- define "mlflow.v0.waitForServiceInitContainer" -}}
+{{- if .context.Values.waitContainer.enabled }}
 - name: {{ printf "wait-for-%s" .target }}
   image: {{ include "mlflow.v0.waitContainer.image" .context }}
   imagePullPolicy: {{ .context.Values.waitContainer.image.pullPolicy }}
@@ -762,7 +763,8 @@ Init container definition for waiting for the database to be ready
   volumeMounts:
     - name: tmp
       mountPath: /tmp
-{{- end -}}
+{{- end }}
+{{- end }}
 
 {{/*
 Compile all warnings into a single message.

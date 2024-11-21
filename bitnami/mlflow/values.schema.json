@@ -1797,6 +1797,11 @@
         "waitContainer": {
             "type": "object",
             "properties": {
+                "enabled": {
+                    "type": "boolean",
+                    "description": "Enable the waitContainer init container",
+                    "default": true
+                },
                 "image": {
                     "type": "object",
                     "properties": {
